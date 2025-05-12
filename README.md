@@ -30,3 +30,10 @@ python==3.8
 tensorflow==1.15.0
 scikit-learn
 ```
+
+注意 BERT 支持的 tensorflow 版本和 python 版本
+
+如果要更改标签种类, 需要在 `BERT_NER.py` 的 `get_labels()` 函数中更改标签名
+
+然后在 `BERT_NER.py` 的 `383, 451, 452, 453` 行把常数 `149` 改成实际标签数加一 `num_labels + 1` (加一用于 padding)
+

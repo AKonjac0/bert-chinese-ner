@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fda5af69-6e3f-46b2-8882-9d4b860442c3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/bert-chinese-ner.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/generator/generator.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/generator/kpi.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/generator/location.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/generator/question.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/generator/time.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-    </list>
+    <list default="true" id="fda5af69-6e3f-46b2-8882-9d4b860442c3" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,7 +50,7 @@
       <workItem from="1746890223561" duration="691000" />
       <workItem from="1746971742112" duration="980000" />
       <workItem from="1747018187214" duration="678000" />
-      <workItem from="1747021470565" duration="520000" />
+      <workItem from="1747021470565" duration="1110000" />
     </task>
     <servers />
   </component>
