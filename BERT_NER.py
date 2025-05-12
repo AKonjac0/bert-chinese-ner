@@ -1,5 +1,7 @@
 #! usr/bin/env python3
+# coding=utf-8
 # -*- coding:utf-8 -*-
+
 """
 Copyright 2018 The Google AI Language Team Authors.
 BASED ON Google_BERT.
@@ -146,7 +148,7 @@ class DataProcessor(object):
     @classmethod
     def _read_data(cls, input_file):
         """Reads a BIO data."""
-        with open(input_file) as f:
+        with open(input_file, encoding='utf-8') as f:
             lines = []
             words = []
             labels = []
@@ -189,8 +191,8 @@ class NerProcessor(DataProcessor):
     def get_labels(self):
         # prevent potential bug for chinese text mixed with english text
         # return ["O", "B-PER", "I-PER", "B-ORG", "I-ORG", "B-LOC", "I-LOC", "[CLS]","[SEP]"]
-        return ["O", "B-PER", "I-PER", "B-ORG", "I-ORG", "B-LOC", "I-LOC", "X","[CLS]","[SEP]"]
-
+        # return ["O", "B-PER", "I-PER", "B-ORG", "I-ORG", "B-LOC", "I-LOC", "X","[CLS]","[SEP]"]
+        return ["O", "B-KPI1", "B-KPI2", "B-KPI3", "B-KPI4", "B-KPI5", "B-KPI6", "B-KPI7", "B-KPI8", "B-KPI9", "B-KPI10", "B-KPI11", "B-KPI12", "B-KPI13", "B-KPI14", "B-KPI15", "B-KPI16", "B-KPI17", "B-KPI18", "B-KPI19", "B-KPI20", "B-KPI21", "B-KPI22", "B-KPI23", "B-KPI24", "I-KPI1", "I-KPI2", "I-KPI3", "I-KPI4", "I-KPI5", "I-KPI6", "I-KPI7", "I-KPI8", "I-KPI9", "I-KPI10", "I-KPI11", "I-KPI12", "I-KPI13", "I-KPI14", "I-KPI15", "I-KPI16", "I-KPI17", "I-KPI18", "I-KPI19", "I-KPI20", "I-KPI21", "I-KPI22", "I-KPI23", "I-KPI24", "B-LOC1", "B-LOC2", "B-LOC3", "B-LOC4", "B-LOC5", "B-LOC6", "B-LOC7", "B-LOC8", "B-LOC9", "B-LOC10", "B-LOC11", "B-LOC12", "B-LOC13", "B-LOC14", "B-LOC15", "B-LOC16", "B-LOC17", "B-LOC18", "B-LOC19", "B-LOC20", "B-LOC21", "B-LOC22", "B-LOC23", "B-LOC24", "I-LOC1", "I-LOC2", "I-LOC3", "I-LOC4", "I-LOC5", "I-LOC6", "I-LOC7", "I-LOC8", "I-LOC9", "I-LOC10", "I-LOC11", "I-LOC12", "I-LOC13", "I-LOC14", "I-LOC15", "I-LOC16", "I-LOC17", "I-LOC18", "I-LOC19", "I-LOC20", "I-LOC21", "I-LOC22", "I-LOC23", "I-LOC24", "B-TIM1", "B-TIM2", "B-TIM3", "B-TIM4", "B-TIM5", "B-TIM6", "B-TIM7", "B-TIM8", "B-TIM9", "B-TIM10", "B-TIM11", "B-TIM12", "B-TIM13", "B-TIM14", "B-TIM15", "B-TIM16", "B-TIM17", "B-TIM18", "B-TIM19", "B-TIM20", "B-TIM21", "B-TIM22", "B-TIM23", "B-TIM24", "I-TIM1", "I-TIM2", "I-TIM3", "I-TIM4", "I-TIM5", "I-TIM6", "I-TIM7", "I-TIM8", "I-TIM9", "I-TIM10", "I-TIM11", "I-TIM12", "I-TIM13", "I-TIM14", "I-TIM15", "I-TIM16", "I-TIM17", "I-TIM18", "I-TIM19", "I-TIM20", "I-TIM21", "I-TIM22", "I-TIM23", "I-TIM24", "X","[CLS]","[SEP]"]
     def _create_example(self, lines, set_type):
         examples = []
         for (i, line) in enumerate(lines):
@@ -378,7 +380,7 @@ def create_model(bert_config, is_training, input_ids, input_mask,
         output_layer = tf.reshape(output_layer, [-1, hidden_size])
         logits = tf.matmul(output_layer, output_weight, transpose_b=True)
         logits = tf.nn.bias_add(logits, output_bias)
-        logits = tf.reshape(logits, [-1, FLAGS.max_seq_length, 11])
+        logits = tf.reshape(logits, [-1, FLAGS.max_seq_length, 149])
         # mask = tf.cast(input_mask,tf.float32)
         # loss = tf.contrib.seq2seq.sequence_loss(logits,labels,mask)
         # return (loss, logits, predict)
@@ -443,9 +445,12 @@ def model_fn_builder(bert_config, num_labels, init_checkpoint, learning_rate,
             def metric_fn(per_example_loss, label_ids, logits):
             # def metric_fn(label_ids, logits):
                 predictions = tf.argmax(logits, axis=-1, output_type=tf.int32)
-                precision = tf_metrics.precision(label_ids,predictions,11,[2,3,4,5,6,7],average="macro")
-                recall = tf_metrics.recall(label_ids,predictions,11,[2,3,4,5,6,7],average="macro")
-                f = tf_metrics.f1(label_ids,predictions,11,[2,3,4,5,6,7],average="macro")
+                lst = []
+                for i in range(2, 146):
+                    lst.append(i)
+                precision = tf_metrics.precision(label_ids,predictions,149,lst,average="macro")
+                recall = tf_metrics.recall(label_ids,predictions,149,lst,average="macro")
+                f = tf_metrics.f1(label_ids,predictions,149,lst,average="macro")
                 #
                 return {
                     "eval_precision":precision,
